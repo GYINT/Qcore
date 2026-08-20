@@ -1,0 +1,76 @@
+version: '3.8'
+
+# QCM MCP Server 全栈 Docker Compose
+# 包含：QCM MCP + Prometheus + Grafana（完整可观测性）
+
+services:
+  # ============ QCM MCP Server ============
+  qcm-mcp:
+    build: .
+    image: qcm/mcp-server:1.0.0
+    container_name: qcm-mcp
+    ports:
+      - "8080:8080"
+    environment:
+      - QCM_ROOT=/app
+      - QCM_AUDIT_DIR=/var/log/qcm-mcp
+      # LLM Provider 密钥（按需启用）
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY:-}
+      # Auth
+      - QCM_REQUIRE_TOKEN=${QCM_REQUIRE_TOKEN:-0}
+      - QCM_AUTH_TOKEN=${QCM_AUTH_TOKEN:-}
+    volumes:
+      - ./logs:/var/log/qcm-mcp
+      - ./qcm_config.yaml:/app/qcm_config.yaml:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health/live"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - qcm-net
+
+  # ============ Prometheus（Metrics 采集）============
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: qcm-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      - qcm-net
+    profiles:
+      - observability  # 仅启动 --profile observability 时启用
+
+  # ============ Grafana（可视化）============
+  grafana:
+    image: grafana/grafana:latest
+    container_name: qcm-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - qcm-net
+    profiles:
+      - observability
+
+networks:
+  qcm-net:
+    driver: bridge
+
+volumes:
+  grafana-data:
+    driver: local
