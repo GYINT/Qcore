@@ -1,0 +1,45 @@
+# QCM 实体索引（V8.4 P1 · 由 scripts/extract_entities.py 从知识库生成）
+# 用途：用户输入实体识别 → 精确路由（标准→E体系+工具 · 大师→大师库）
+# 维护：运行 extract_entities.py 重新生成；人工别名直接编辑本文件 aliases（生成时不覆盖）
+
+entities:
+  - {name: "ISO 9001", type: standard, aliases: ["ISO 9001", "ISO9001", "ISO9001:2015"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "ISO 9000", type: standard, aliases: ["ISO 9000", "ISO9000", "ISO9000:2015"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "IATF 16949", type: standard, aliases: ["IATF 16949", "IATF16949", "IATF16949:2016"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "AS9100D", type: standard, aliases: ["AS9100D"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "ISO 13485", type: standard, aliases: ["ISO 13485", "ISO13485", "ISO13485:2016"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "TL 9000", type: standard, aliases: ["TL 9000", "TL9000"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "TS 22163", type: standard, aliases: ["TS 22163", "TS22163", "TS22163:2017"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "ISO/TS 16949", type: standard, aliases: ["ISO/TS 16949", "ISO/TS16949"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "AIAG-VDA FMEA", type: standard, aliases: ["AIAG-VDA FMEA", "AIAG-VDAFMEA"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "AIAG SPC", type: standard, aliases: ["AIAG SPC", "AIAGSPC"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "AIAG PPAP", type: standard, aliases: ["AIAG PPAP", "AIAGPPAP"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "AIAG APQP", type: standard, aliases: ["AIAG APQP", "AIAGAPQP"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "VDA 6.3", type: standard, aliases: ["VDA 6.3", "VDA6.3"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "VDA 6.5", type: standard, aliases: ["VDA 6.5", "VDA6.5"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "ISO/TS 16949 MSA", type: standard, aliases: ["ISO/TS 16949 MSA", "ISO/TS16949MSA"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "CMMI", type: standard, aliases: ["CMMI"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "ISO 31000", type: standard, aliases: ["ISO 31000", "ISO31000"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "IEC 31010", type: standard, aliases: ["IEC 31010", "IEC31010"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "ESG", type: standard, aliases: ["ESG"], domain: E体系, intent: ③评估审计, source: standards.md}
+  - {name: "Walter A. Shewhart", type: master, aliases: ["Shewhart", "Walter A. Shewhart", "休哈特", "沃特·休哈特"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "W. Edwards Deming", type: master, aliases: ["Deming", "W. Edwards Deming", "W.爱德华兹·戴明", "戴明"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Joseph M. Juran", type: master, aliases: ["Joseph M. Juran", "Juran", "朱兰", "约瑟夫·朱兰"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Philip B. Crosby", type: master, aliases: ["Crosby", "Philip B. Crosby", "克劳士比", "菲利普·克劳士比"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Kaoru Ishikawa", type: master, aliases: ["Ishikawa", "Kaoru Ishikawa", "石川馨"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Genichi Taguchi", type: master, aliases: ["Genichi Taguchi", "Taguchi", "田口玄一"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Armand V. Feigenbaum", type: master, aliases: ["Armand V. Feigenbaum", "Feigenbaum", "费根堡姆", "阿曼德·费根堡姆"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Taiichi Ohno", type: master, aliases: ["Ohno", "Taiichi Ohno", "大野耐一"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Shigeo Shingo", type: master, aliases: ["Shigeo Shingo", "Shingo", "新乡重夫"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Bill Smith", type: master, aliases: ["Bill Smith", "Smith", "史密斯", "比尔·史密斯"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Masaaki Imai", type: master, aliases: ["Imai", "Masaaki Imai", "今井正明"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Yoji Akao", type: master, aliases: ["Akao", "Yoji Akao", "赤尾洋二"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Dorian Shainin", type: master, aliases: ["Dorian Shainin", "Shainin", "多里安·谢宁", "谢宁"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Frederick W. Taylor", type: master, aliases: ["Frederick W. Taylor", "Taylor", "弗雷德里克·泰勒", "泰勒"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "迈凯尔·哈里", type: master, aliases: ["Mikel Harry", "迈凯尔·哈里"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Shigeru Mizuno", type: master, aliases: ["Mizuno", "Shigeru Mizuno", "水野滋"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Henry Ford", type: master, aliases: ["Ford", "Henry Ford", "亨利·福特", "福特"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Michael Hammer", type: master, aliases: ["Hammer", "Michael Hammer", "哈默", "迈克尔·哈默"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "James Harrington / H. James Harrington", type: master, aliases: ["Harrington", "James Harrington / H. James Harrington", "哈林顿", "詹姆斯·哈林顿"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Hitoshi Kume", type: master, aliases: ["Hitoshi Kume", "Kume", "久米均"], domain: 通用, intent: ④知识学习, source: masters.md}
+  - {name: "Peter F. Drucker", type: master, aliases: ["Drucker", "Peter F. Drucker", "彼得·德鲁克", "德鲁克"], domain: 通用, intent: ④知识学习, source: masters.md}
