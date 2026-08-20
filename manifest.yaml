@@ -1,0 +1,323 @@
+# QCM Skill Manifest（与 SKILL.md frontmatter 双绑）
+
+> **同步机制**：本文件与 SKILL.md frontmatter 字节级一致
+> **同步命令**：`python3 scripts/sync_manifest.py`
+> **依据**：Infoseek Skill v1.5.0+ Manifest 双绑规范
+
+---
+
+## Skill 元数据
+
+```yaml
+name: QCM
+version: 1.0.0
+internal_version: 0.0.0
+display_name: Quality Crisis Management（QCM）
+description: 'QCM 问题解决指导 Skill · 4 层级架构（输出/协议/输入/底层）· 严格分离 · 动作阶段主·时间维度子 · 输出层 4 形态 · 场景路由消费（意图×领域→形态×组件动态组合）· 组件池三机制（归一化/热度/约束映射）· 5 范式 · action-orders.md 14 章协议权威 · 文件层治理（生命周期/守卫 9 检/归档）· 路径归一化（paths/registry）· 插件扩展（plugins/ 热加载）· 回归全绿 · Infoseek 协同 5 维缺口检测 + 混合策略 3 阶段触发'
+
+author: Forka
+license: Apache-2.0
+entry_point: SKILL.md
+protocol_authority: action-orders.md
+```
+
+---
+
+## 5 维设计（When / Who / What / Why / Where）
+
+| 维度 | 内容 |
+|------|------|
+| **When（触发条件）** | 用户提出质量问题/危机管理/质量治理/双归零/8D 等相关问题 |
+| **Who（角色声明）** | QCM = 质量管理危机解决专家 · 4 层级架构·协议层单一权威 |
+| **What（任务目标）** | 按 4 输出形态提供质量管理实战输出（5 段式 · 案例数据 · 评估 · 决策 · 快速判定）|
+| **Why（适用/不适用）** | 适用：制造业/服务业/航空业/IT 服务的质量危机管理 · 不适用：纯财务/纯法务/纯营销 |
+| **Where（范围）** | 全球 · 跨行业 · 跨业态 · 跨场景 |
+
+---
+
+## 5 大范式（V6.1-6.3 强化）
+
+| # | 范式 | 实施 |
+|---|------|------|
+| ① | **单一职责** | QCM = 质量管理 · action-orders.md = 协议层单一权威 |
+| ② | **契约驱动** | MDS 22 字段契约 + action-orders §1-§7 + 4 形态 input_schema/output_schema |
+| ③ | **渐进增强** | MDS T1→T2→T3→T4 + 4 形态降级路径（完整/部分/缺失）|
+| ④ | **可观测设计** | 8 引擎回归 + 4 形态 execution_trace + qcm_output_validator.py |
+| ⑤ | **防御性输出** | [unverified] 标注 + 数据时效声明 + 边界声明 + 禁止内容清单 |
+
+---
+
+## 5 输出形态（V6.0 P4 + V6.1-6.3 强化）
+
+| 形态 | Token | 周期 | 协议层依赖 | 4 形态文件 |
+|------|-------|------|-----------|-----------|
+| **① 案例应用** | ~700 | 长期 | §1-§7 全 | `outputs/case-application.md` |
+| **② 决策卡片** | ~50 | 即时 | §1+§4 | `outputs/decision-card.md` |
+| **③ 评估报告** | ~120 | 季度 | §7 L4 治理 | `outputs/assessment-report.md` |
+| **④ 快速响应** | ~30 | 即时 | §3.1 危机判定 | `outputs/quick-response.md` |
+
+---
+
+## 域标签（labels · Agent 发现用）
+
+```yaml
+labels:
+  primary:
+    - 质量管理
+    - 危机管理
+    - 问题解决
+  secondary:
+    - 8D / 5Why / 双归零
+    - SPC / FMEA / 控制计划
+    - IATF 16949 / ISO 9001 / AS9100
+    - 4M1E / PDCA / PDSA
+    - ITIL P1-P4 / D1-D3
+    - 围堵-消除-纠正-预防
+    - AO-1/AO-2/AO-3/AO-4
+    - L1-L4 触发矩阵
+```
+
+---
+
+## 意图描述（intent · 4 段式）
+
+```yaml
+intent:
+  is: |
+    QCM 是质量管理问题解决 Skill，提供 4 层级架构（输出/协议/输入/底层），
+    5 段式输出结构（行动要项/事态导航/危机沟通/行动措施/双归零+后续计划），
+    4 输出形态（案例应用/决策卡片/评估报告/快速响应），
+    通过严格分离原则消除冗余，通过 8 引擎回归保证质量。
+  solves:
+    - 质量危机响应（D≥4 触发 AO-1 围堵）
+    - 质量问题根因（5Why / 8D / 三链）
+    - 质量治理水平评估（L4 4 层 × N 维度评分）
+    - 质量决策快速判定（D 总分 + ITIL P）
+    - 跨行业质量方案（汽车/航空/电子/服务）
+  applicable:
+    - 制造业（汽车/航空/半导体/精密）
+    - 服务业（零售/餐饮/IT）
+    - 跨业态质量危机管理
+    - 体系成熟度评估
+  not_applicable:
+    - 纯财务问题（无质量维度）
+    - 纯法务问题（合规以外）
+    - 纯营销问题（无质量/工艺）
+    - 单一工具问答（用工具库而非 QCM）
+```
+
+---
+
+## 前置指纹（precondition）
+
+```yaml
+precondition:
+  user_provides:
+    required:
+      - 质量问题描述（场景 + 危机/问题 + 期望输出）
+    optional:
+      - MDS 字段（F1-F24 部分已知）
+      - 行业/业态信息
+  qcm_loads:
+    - action-orders.md V5.0+（协议层单一权威）
+    - cases.md（4 案例库）
+    - tools.md + governance.md + masters.md（底层）
+    - outputs/*.md（4 形态模板）
+  qcm_validates:
+    - 8 引擎回归全绿（572 用例）
+    - 4×N 维度表完整
+    - D 折叠段契约完整
+```
+
+---
+
+## 依赖声明（dependencies）
+
+```yaml
+dependencies:
+  skills:
+    - infoseek (v1.5.0+v2.1.3) - 场景库未覆盖时调研（V7.0 MCP 集成）
+  mcp_servers:
+    - (V7.0 规划) qcm_mcp_server - QCM 能力开放
+  base_layer:
+    tools:
+      - F01 8D / F02 5Why / F05 5W2H / F06 CAPA / F11 4M1E
+      - A01 SPC / B01 FMEA / B04 稳健设计 / B05 控制计划
+      - C08 FRACAS / D25 4M变更 / F02 五问
+    standards:
+      - IATF 16949 / ISO 9001 / AS9100 / VDA 6.3 / ISO 31000
+      - CMMI / AIAG SPC / AIAG-VDA FMEA / GB/T 19000
+    masters:
+      - Shewhart / Deming / Juran / Crosby / Ishikawa / Taguchi
+      - Imai / Shingo / Ohno / Akao / Shainin / Feigenbaum
+      - Smith / Taylor / Harry / Mizuno / Ford / Hammer
+      - Harrington / Kume / Drucker
+```
+
+---
+
+## 副作用声明（side_effects · V6.1）
+
+```yaml
+side_effects:
+  output_forms:
+    case_application:
+      changes: 无副作用（仅输出文本）
+      rollback: 不适用
+      idempotent: true (可重读)
+    decision_card:
+      changes: 无副作用（仅输出决策）
+      rollback: 不适用
+      idempotent: true
+    assessment_report:
+      changes: 评分记录写入 governance.md 历史
+      rollback: 撤销历史记录
+      idempotent: false (重复评分会覆盖)
+    quick_response:
+      changes: 判定记录可追溯
+      rollback: 不适用
+      idempotent: true
+  data_pollution:
+    - 评估报告（assessment_report）写入 governance.md 历史记录 → 需保留
+  resource_leak:
+    - 无外部资源占用
+  state_pollution:
+    - 上下文快照不可变（每次调用独立）
+```
+
+---
+
+## 输入契约（input_schema · V6.2）
+
+```yaml
+input_schema:
+  type: object
+  required:
+    - query (string)  # 用户问题/场景描述
+  optional:
+    - mds_fields (object)  # MDS F1-F24 部分字段
+    - industry (string)  # 行业
+    - output_form (enum)  # 4 形态选择
+    - skill_mode (enum)   # auto/case/decision/assessment/quick
+  validation:
+    - query 非空且 ≥10 字符
+    - output_form ∈ {case_application, decision_card, assessment_report, quick_response}
+```
+
+---
+
+## 输出契约（output_schema · V6.2）
+
+```yaml
+output_schema:
+  type: object
+  required:
+    - form (string)        # 输出形态
+    - content (string)      # 5 段式内容
+    - execution_trace (object)  # 执行轨迹（V6.3）
+    - timestamp (string)    # 生成时间 ISO8601
+    - version (string)      # QCM 版本
+  optional:
+    - uncertainty_markers (array)  # [unverified] 标注列表
+    - data_freshness (string)       # 数据时效声明
+    - degradation_path (string)     # 降级路径
+    - side_effects (object)         # 副作用声明
+  forbidden:
+    - 财务预测
+    - 内部敏感数据
+    - 编造统计数字
+    - 精确收入数字
+```
+
+---
+
+## 降级路径（progressive_enhancement · V6.2）
+
+```yaml
+degradation_paths:
+  complete_input:
+    condition: MDS T4 完整输入（22 字段齐）
+    output: 5 段式 + 4 形态完整输出
+  partial_input:
+    condition: MDS T2-T3 部分输入（8-17 字段）
+    output: 5 段式 + Assumptions 块声明假设
+  fuzzy_input:
+    condition: MDS T1 模糊输入（5 字段）
+    output: 询问 2-3 关键问题或使用默认值填充
+  minimal_input:
+    condition: 仅 query（无 MDS 字段）
+    output: 快速响应（4 形态之④）+ 询问关键信息
+```
+
+---
+
+## 验证清单（validation · V6.3）
+
+```yaml
+validation_checklist:
+  manifest_dual_binding:
+    - SKILL.md frontmatter 完整
+    - manifest.yaml 与 frontmatter 字节一致
+    - skill_meta.json 与 SKILL.md description 一致
+  output_form_structure:
+    - 4 形态 input_schema 完整
+    - 4 形态 output_schema 完整
+    - 4 形态 side_effects 完整
+    - 4 形态 degradation_paths 完整
+    - 4 形态 execution_trace 完整
+  defensive_output:
+    - [unverified] 标注规则应用
+    - 数据时效声明
+    - 边界声明（不适用场景）
+    - 禁止内容清单
+  8_engines_regression:
+    - all_test: 136/136
+    - cross_test: 214/214
+    - loop_test: 16/16
+    - combo_test: 11/11
+    - super_test: 20/20
+    - super_reverse: 16/16
+    - full_test: 0 悬空
+    - lowfreq_test: 59/59
+```
+
+---
+
+## 集成接口（V7.0 规划）
+
+```yaml
+v7_integration:
+  mcp_server:
+    name: qcm_mcp_server
+    transport: [stdio, SSE]
+    tools:
+      - qcm_search       # 场景搜索
+      - qcm_research     # 端到端调研
+      - qcm_evaluate     # 评估报告生成
+      - qcm_decide       # 决策卡片生成
+      - qcm_audit        # 案例库审查
+      - qcm_validate     # 架构验证
+  infoseek_integration:
+    trigger: 场景库未覆盖时（per SKILL.md §七）
+    interface:
+      - qcm_research → infoseek_research (端到端)
+      - qcm_search → infoseek_anchor_score (锚点评分)
+      - qcm_validate → infoseek_conflict_detection (冲突检测)
+    data_flow:
+      - input: QCM 未覆盖场景
+      - process: Infoseek 锚点发现 + 采集 + 融合
+      - output: 调研报告 → QCM 消化入库
+```
+
+---
+
+## 版本履历
+
+| 日期 | 版本 | 摘要 |
+|------|------|------|
+| 2026-08-09 | **V6.3** | Phase 3：可观测设计（execution_trace）+ 副作用完整声明 + qcm_output_validator.py |
+| 2026-08-09 | **V6.2** | Phase 2：防御性输出 + 契约强化 + 渐进增强（[unverified] + input_schema/output_schema + 降级路径）|
+| 2026-08-09 | **V6.1** | Phase 1：Skill 标准化（manifest.yaml + skill_meta.json + sync_manifest.py）|
+| 2026-08-09 | V6.0 | 输出层 4 形态（案例应用/决策卡片/评估报告/快速响应）|
+| 2026-08-09 | V5.0+ | 严格分离升级：输出层不复述协议层 |
+| 2026-08-08 | V5.0 | 动作维度主·时间维度子架构 |
