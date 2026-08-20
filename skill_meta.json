@@ -1,0 +1,141 @@
+{
+  "skill_name": "QCM",
+  "skill_full_name": "Quality Crisis Management",
+  "version": "1.0.0",
+  "internal_version": "0.0.0",
+  "last_updated": "2026-08-20",
+  "description": "QCM 问题解决指导 Skill · 4 层级架构（输出/协议/输入/底层）· 严格分离 · 动作阶段主·时间维度子 · 输出层 4 形态 · 场景路由消费（意图×领域→形态×组件动态组合）· 组件池三机制（归一化/热度/约束映射）· 5 范式 · action-orders.md 14 章协议权威 · 文件层治理（生命周期/守卫 9 检/归档）· 路径归一化（paths/registry）· 插件扩展（plugins/ 热加载）· 回归全绿 · Infoseek 协同 5 维缺口检测 + 混合策略 3 阶段触发",
+  "metadata": {
+    "author": "Forka",
+    "license": "Apache-2.0",
+    "entry_point": "SKILL.md",
+    "protocol_authority": "action-orders.md",
+    "manifest": "manifest.yaml",
+    "manifest_sync": "scripts/sync_manifest.py"
+  },
+  "5_dimensions": {
+    "when": "用户提出质量管理/危机管理/问题解决/质量治理/双归零/8D 等相关问题",
+    "who": "QCM = 质量管理危机解决专家 · 4 层级架构·协议层单一权威",
+    "what": "按 4 输出形态提供质量管理实战输出（5 段式 · 案例数据 · 评估 · 决策 · 快速判定）",
+    "why_applicable": [
+      "制造业质量危机",
+      "服务业质量危机",
+      "跨业态质量治理",
+      "体系成熟度评估"
+    ],
+    "why_not_applicable": [
+      "纯财务问题",
+      "纯法务问题",
+      "纯营销问题",
+      "单一工具问答"
+    ],
+    "where": "全球 · 跨行业 · 跨业态 · 跨场景"
+  },
+  "5_paradigms": {
+    "single_responsibility": "QCM = 质量管理 · action-orders.md = 协议层单一权威",
+    "contract_driven": "MDS 22 字段 + action-orders §1-§7 + 4 形态 input_schema/output_schema",
+    "progressive_enhancement": "MDS T1→T2→T3→T4 + 4 形态降级路径（完整/部分/缺失）",
+    "observable_design": "8 引擎回归 + 4 形态 execution_trace + qcm_output_validator.py",
+    "defensive_output": "[unverified] 标注 + 数据时效 + 边界声明 + 禁止内容清单"
+  },
+  "labels": {
+    "primary": [
+      "质量管理",
+      "危机管理",
+      "问题解决"
+    ],
+    "secondary": [
+      "8D",
+      "5Why",
+      "双归零",
+      "SPC",
+      "FMEA",
+      "控制计划",
+      "IATF 16949",
+      "ISO 9001",
+      "AS9100",
+      "4M1E",
+      "PDCA",
+      "PDSA",
+      "ITIL P1-P4",
+      "D1-D3",
+      "围堵-消除-纠正-预防",
+      "AO-1",
+      "AO-2",
+      "AO-3",
+      "AO-4",
+      "L1-L4 触发矩阵"
+    ]
+  },
+  "output_forms": {
+    "case_application": {
+      "token": 700,
+      "cycle": "长期",
+      "protocol_deps": [
+        "§1",
+        "§2",
+        "§3",
+        "§4",
+        "§5",
+        "§7"
+      ],
+      "file": "outputs/case-application.md",
+      "use_case": "实战案例（完整 5 段式）"
+    },
+    "decision_card": {
+      "token": 50,
+      "cycle": "即时",
+      "protocol_deps": [
+        "§1",
+        "§4"
+      ],
+      "file": "outputs/decision-card.md",
+      "use_case": "应急/选型/治理决策"
+    },
+    "assessment_report": {
+      "token": 120,
+      "cycle": "季度",
+      "protocol_deps": [
+        "§7"
+      ],
+      "file": "outputs/assessment-report.md",
+      "use_case": "治理水平评分"
+    },
+    "quick_response": {
+      "token": 30,
+      "cycle": "即时",
+      "protocol_deps": [
+        "§3.1"
+      ],
+      "file": "outputs/quick-response.md",
+      "use_case": "现场判定/应急处置"
+    }
+  },
+  "validation": {
+    "manifest_dual_binding": "scripts/sync_manifest.py",
+    "output_structure": "scripts/qcm_output_validator.py",
+    "regression_tests": {
+      "all_test": "136/136",
+      "cross_test": "214/214",
+      "loop_test": "16/16",
+      "combo_test": "11/11",
+      "super_test": "20/20",
+      "super_reverse_test": "16/16",
+      "full_test": "0_悬空",
+      "lowfreq_test": "59/59",
+      "total_cases": 572
+    }
+  },
+  "version_history": [
+    {
+      "date": "2026-08-20",
+      "version": "1.0.0",
+      "summary": "对外发布 1.0.0：版本归一化（对外 1.0.0 / 内部 0.0.0 基线）· 清理内部版本标注 · 新增 DEPENDENCIES/API_KEYS 声明 · 清理缓存与开发痕迹 · Infoseek OAuth 环境补齐（v050/v060 转真实通过）"
+    },
+    {
+      "date": "2026-08-18",
+      "version": "0.0.0-pre",
+      "summary": "发布前基线（原内部 V8.3.1 体系，历史收口于 docs/CHANGELOG.md）"
+    }
+  ]
+}
