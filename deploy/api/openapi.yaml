@@ -1,0 +1,657 @@
+openapi: 3.1.0
+
+info:
+  title: QCM MCP Server API
+  version: 1.0.0
+  description: |
+    Quality Control Methodology Model Context Protocol Server
+
+    提供 6 个核心工具 + 完整 MCP 协议支持（Resources / Prompts / Sampling / Streaming），
+    集成 LLM Router（7 provider + fallback chain）、Cache（Corpus + LLM）、
+    Hot reload、OAuth 2.0 + RBAC、Prometheus Metrics、Audit Log。
+
+  contact:
+    name: QCM Team
+    email: qcm@example.com
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+
+  x-logo:
+    url: http://localhost:8080/logo.png
+
+servers:
+  - url: http://localhost:8080
+    description: Local development
+  - url: https://qcm.example.invalid
+    description: Example production (placeholder)
+
+tags:
+  - name: OAuth
+    description: OAuth 2.0 认证（client_credentials）
+  - name: MCP
+    description: MCP 协议 JSON-RPC 端点
+  - name: Health
+    description: 健康检查（K8s probes）
+  - name: Metrics
+    description: Prometheus 监控
+  - name: Streaming
+    description: Server-Sent Events
+
+paths:
+  # ============ OAuth 2.0 ============
+  /oauth/token:
+    post:
+      tags: [OAuth]
+      summary: Get OAuth 2.0 access token (client_credentials flow)
+      operationId: getToken
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OAuthTokenRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthTokenRequest'
+      responses:
+        '200':
+          description: Token issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthTokenResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Invalid client credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ============ Health ============
+  /health:
+    get:
+      tags: [Health]
+      summary: Health overview
+      operationId: getHealthOverview
+      responses:
+        '200':
+          description: Server is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthOverview'
+
+  /health/live:
+    get:
+      tags: [Health]
+      summary: K8s liveness probe
+      operationId: getHealthLiveness
+      responses:
+        '200':
+          description: Server is alive
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthLiveness'
+
+  /health/ready:
+    get:
+      tags: [Health]
+      summary: K8s readiness probe
+      operationId: getHealthReadiness
+      responses:
+        '200':
+          description: Server is ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthReadiness'
+        '503':
+          description: Server is degraded
+
+  /healthz:
+    get:
+      tags: [Health]
+      summary: K8s liveness probe (alias)
+      operationId: getHealthz
+      responses:
+        '200':
+          description: Server is alive
+
+  /readyz:
+    get:
+      tags: [Health]
+      summary: K8s readiness probe (alias)
+      operationId: getReadyz
+      responses:
+        '200':
+          description: Server is ready
+
+  # ============ Metrics & Stats ============
+  /metrics:
+    get:
+      tags: [Metrics]
+      summary: Prometheus metrics
+      operationId: getMetrics
+      responses:
+        '200':
+          description: Metrics in Prometheus text format
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: |
+                  # HELP qcm_requests_total QCM MCP metric
+                  # TYPE qcm_requests_total counter
+                  qcm_requests_total{method="tools/call",tool="qcm_research",status="ok"} 1523
+
+  /stats:
+    get:
+      tags: [Metrics]
+      summary: JSON stats summary
+      operationId: getStats
+      responses:
+        '200':
+          description: Stats summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatsSummary'
+
+  # ============ Streaming ============
+  /sse:
+    get:
+      tags: [Streaming]
+      summary: Server-Sent Events stream
+      operationId: streamSSE
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: SSE stream (30s heartbeat)
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                example: |
+                  data: {"jsonrpc":"2.0","method":"sse/connected","params":{"server":"qcm-mcp-server"}}
+
+                  : heartbeat
+                  data: {"jsonrpc":"2.0","method":"sse/heartbeat","ts":1234567890}
+
+  # ============ JSON-RPC ============
+  /rpc:
+    post:
+      tags: [MCP]
+      summary: JSON-RPC 2.0 short request
+      operationId: rpcCall
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JSONRPCRequest'
+      responses:
+        '200':
+          description: JSON-RPC response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONRPCResponse'
+
+  /messages:
+    post:
+      tags: [MCP]
+      summary: JSON-RPC 2.0 long connection
+      operationId: rpcMessages
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JSONRPCRequest'
+      responses:
+        '200':
+          description: JSON-RPC response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONRPCResponse'
+
+  # ============ MCP Tools（OpenAPI 描述）============
+  /mcp/tools/list:
+    post:
+      tags: [MCP]
+      summary: List all available MCP tools
+      operationId: listTools
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JSONRPCRequest'
+      responses:
+        '200':
+          description: List of 6 tools
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONRPCResponse'
+
+  /mcp/tools/call/{name}:
+    post:
+      tags: [MCP]
+      summary: Call a specific MCP tool
+      operationId: callTool
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - qcm_research
+              - qcm_score_source
+              - qcm_decide
+              - qcm_solve_problem
+              - qcm_audit
+              - qcm_validate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JSONRPCRequest'
+      responses:
+        '200':
+          description: Tool result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONRPCResponse'
+
+  # ============ MCP Resources ============
+  /mcp/resources/list:
+    post:
+      tags: [MCP]
+      summary: List MCP resources (corpus + tools + masters + standards)
+      operationId: listResources
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JSONRPCRequest'
+      responses:
+        '200':
+          description: List of 100+ resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONRPCResponse'
+
+  /mcp/resources/read:
+    post:
+      tags: [MCP]
+      summary: Read a specific MCP resource
+      operationId: readResource
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JSONRPCRequest'
+      responses:
+        '200':
+          description: Resource content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONRPCResponse'
+
+  # ============ MCP Prompts ============
+  /mcp/prompts/list:
+    post:
+      tags: [MCP]
+      summary: List MCP prompt templates
+      operationId: listPrompts
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JSONRPCRequest'
+      responses:
+        '200':
+          description: 4 prompt templates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONRPCResponse'
+
+  /mcp/prompts/get:
+    post:
+      tags: [MCP]
+      summary: Get a specific MCP prompt with filled arguments
+      operationId: getPrompt
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JSONRPCRequest'
+      responses:
+        '200':
+          description: Filled prompt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONRPCResponse'
+
+  # ============ MCP Sampling ============
+  /mcp/sampling/createMessage:
+    post:
+      tags: [MCP]
+      summary: Server-side LLM call (sampling API)
+      operationId: samplingCreateMessage
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JSONRPCRequest'
+      responses:
+        '200':
+          description: LLM response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONRPCResponse'
+
+# ============ Components ============
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        OAuth 2.0 Bearer Token (or simple Bearer token for V0.5 compat)
+
+  schemas:
+    OAuthTokenRequest:
+      type: object
+      required: [grant_type, client_id, client_secret]
+      properties:
+        grant_type:
+          type: string
+          enum: [client_credentials]
+          example: client_credentials
+        client_id:
+          type: string
+          example: default-client
+        client_secret:
+          type: string
+          format: password
+          example: my-secret
+        scope:
+          type: string
+          example: "tools/call tools/list"
+        tenant:
+          type: string
+          default: default
+          example: default
+
+    OAuthTokenResponse:
+      type: object
+      required: [access_token, token_type, expires_in]
+      properties:
+        access_token:
+          type: string
+          description: JWT-like token (qcm.xxx.xxx.xxx)
+          example: qcm.eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZWZhdWx0In0.signature
+        token_type:
+          type: string
+          enum: [Bearer]
+        expires_in:
+          type: integer
+          description: Seconds until expiration
+          example: 3600
+        scope:
+          type: string
+          example: "tools/call tools/list"
+
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          example: invalid_client
+        error_description:
+          type: string
+          example: unknown client_id
+
+    HealthOverview:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ok, degraded]
+        version:
+          type: string
+          example: "1.0.0"
+        tools_count:
+          type: integer
+          example: 6
+        transports:
+          type: array
+          items:
+            type: string
+          example: ["stdio", "http"]
+
+    HealthLiveness:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [alive]
+        version:
+          type: string
+        protocol:
+          type: string
+          example: V8.0+
+        uptime_s:
+          type: integer
+          example: 3600
+
+    HealthReadiness:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ready, degraded]
+        corpus_files:
+          type: integer
+          example: 41
+        corpus_ok:
+          type: boolean
+        llm:
+          type: object
+          properties:
+            mode:
+              type: string
+              enum: [auto, real, mock]
+            is_real_mode:
+              type: boolean
+            providers_with_keys:
+              type: array
+              items:
+                type: string
+        rate_limiter:
+          type: object
+        metrics:
+          type: object
+
+    StatsSummary:
+      type: object
+      properties:
+        uptime_s:
+          type: number
+        counters:
+          type: object
+          additionalProperties: true
+        gauges:
+          type: object
+          additionalProperties: true
+        histogram_buckets:
+          type: object
+        rate_limiter:
+          type: object
+
+    JSONRPCRequest:
+      type: object
+      required: [jsonrpc, id, method]
+      properties:
+        jsonrpc:
+          type: string
+          enum: ["2.0"]
+        id:
+          type: integer
+          example: 1
+        method:
+          type: string
+          enum:
+            - initialize
+            - tools/list
+            - tools/call
+            - resources/list
+            - resources/read
+            - prompts/list
+            - prompts/get
+            - sampling/createMessage
+            - ping
+        params:
+          type: object
+          additionalProperties: true
+
+    JSONRPCResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+          example: "2.0"
+        id:
+          type: integer
+        result:
+          type: object
+          additionalProperties: true
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              example: -32601
+            message:
+              type: string
+              example: Method not found
+
+    # ============ MCP Tools（详细 schema）============
+    QCMToolResearch:
+      type: object
+      description: |
+        qcm_research - 端到端质量调研
+
+        根据 T-L 路由（T1-T4 → L1-L4），调用 LLM Router 5 段式输出：
+        1. 行动要项（围堵/消除/纠正/预防）
+        2. 事态导航（时间线 + 决策点）
+        3. 危机沟通（ITIL P1-P4）
+        4. 行动措施（具体步骤 + 责任人）
+        5. 双归零（技术归零 + 管理归零）
+      properties:
+        query:
+          type: string
+          description: 用户问题/场景描述
+        level_hint:
+          type: string
+          enum: [T1, T2, T3, T4]
+          description: 输入深度（默认 T2）
+        context:
+          type: object
+          description: 上下文（行业/工艺/危机等级）
+        streaming:
+          type: boolean
+          default: false
+          description: 是否启用流式响应（V0.7）
+
+    QCMToolScoreSource:
+      type: object
+      description: qcm_score_source - 5 维评分（主题30% + 可信40% + 时效20% + 完整10%）
+      properties:
+        url:
+          type: string
+        content:
+          type: string
+        domain:
+          type: string
+
+    QCMToolDecide:
+      type: object
+      description: qcm_decide - T-L 路由决策（T1-T4 → L1-L4 + 工具 + 大师）
+      properties:
+        problem_text:
+          type: string
+        urgency:
+          type: string
+          enum: [紧急, 重要, 常规, 例行]
+
+    QCMToolSolveProblem:
+      type: object
+      description: qcm_solve_problem - 5 段式输出 + 双归零判据
+      properties:
+        problem_dict:
+          type: object
+        context:
+          type: object
+
+    QCMToolAudit:
+      type: object
+      description: qcm_audit - 字段校验 + 引用追溯 + 五维风险评估
+      properties:
+        decision_output:
+          type: object
+
+    QCMToolValidate:
+      type: object
+      description: qcm_validate - 4 形态 × 10 项 = 40 检查矩阵
+      properties:
+        output_text:
+          type: string
+        form:
+          type: string
+          enum: [case-application, decision-card, assessment-report, quick-response]
