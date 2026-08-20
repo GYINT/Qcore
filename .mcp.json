@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "qcm-search": {
+      "command": "${QCM_ROOT}/scripts/mcp_server.py",
+      "args": ["--transport", "stdio"],
+      "env": {
+        "QCM_ROOT": "${QCM_ROOT}",
+        "QCM_AUTH_TOKEN": "${QCM_AUTH_TOKEN}"
+      }
+    },
+    "infoseek-search": {
+      "command": "${INFOSEEK_ROOT}/scripts/infoseek_mcp_server.py",
+      "args": ["--transport", "stdio"],
+      "env": {
+        "INFOSEEK_ROOT": "${INFOSEEK_ROOT}",
+        "INFOSEEK_DB": "${HOME}/.infoseek/infoseek_db.json",
+        "INFOSEEK_ARCHIVE": "${HOME}/infoseek-archives"
+      }
+    }
+  }
+}
