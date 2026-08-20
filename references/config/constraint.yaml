@@ -1,0 +1,84 @@
+# QCM 动态协议映射表（V8.3 · 约束→协议→组件 组合规则）
+# 协议：action-orders §14 路由 + §3.1 判定 + §4 阶段 + §3.4 深度
+# 机制：路由意图×领域 → 形态×骨架 → 组件序列（动态组合 · 非枚举模板）
+# 防爆炸：组件数 ≈ 公共 + Σ骨架差异（线性），非 形态×意图（乘积）
+# 优先级：具体约束（D/复杂度）> 意图精确匹配 > 默认骨架
+
+mapping:
+  # ============ ① 危机处置（D 驱动深度） ============
+  - constraints: {intent: "①危机处置", D: ">=7", complexity: "multi_chain"}
+    form: case_application
+    skeleton: crisis
+    components: [_meta, _route, _action_items, _state_nav, _crisis_comm,
+                 _measures, _dual_zero, _followup, _probe]
+    depth: L3
+    note: 重度+多链 → 完整归零 + 探针（决策桥）
+  - constraints: {intent: "①危机处置", D: ">=4"}
+    form: case_application
+    skeleton: crisis
+    components: [_meta, _route, _action_items, _state_nav, _crisis_comm,
+                 _measures, _dual_zero, _followup]
+    depth: L2
+  - constraints: {intent: "①危机处置", D: "<4"}
+    form: quick_response
+    skeleton: crisis
+    components: [_meta, _crisis_judge]
+    depth: L1
+    note: 微型/普通 → 快响判定（30 秒）
+  - constraints: {intent: "①危机处置", ao: "决策"}
+    form: decision_card
+    skeleton: crisis
+    components: [_meta, _route, _action_items, _decision_row, _measures, _dual_zero]
+    depth: L1-L2
+
+  # ============ ② 流程优化（PDCA 骨架） ============
+  - constraints: {intent: "②流程优化"}
+    form: case_application
+    skeleton: improve
+    components: [_meta, _route, _action_items, _pdca_current, _pdca_target,
+                 _pdca_counter, _pdca_verify, _dual_zero, _followup]
+    depth: L2
+    note: 改进无危机沟通段（PDCA 闭环）
+
+  # ============ ③ 评估审计（评估骨架） ============
+  - constraints: {intent: "③评估审计"}
+    form: assessment_report
+    skeleton: assess
+    components: [_meta, _route, _assessment_summary, _score_table, _gaps,
+                 _suggestions, _dual_zero, _followup]
+    depth: L3
+    note: 评分→缺口→路线图
+
+  # ============ ④ 知识学习（知识骨架 · 快响轻量） ============
+  - constraints: {intent: "④知识学习"}
+    form: quick_response
+    skeleton: knowledge
+    components: [_meta, _knowledge_def, _knowledge_points, _knowledge_basis]
+    depth: L1
+    note: 定义→要点→工具→依据（无判定/无 ITIL）
+
+  # ============ ⑤ 知识沉淀（适配包 · 原真空补建） ============
+  - constraints: {intent: "⑤知识沉淀"}
+    form: case_application
+    skeleton: distill
+    components: [_meta, _route, _distill_pack, _followup]
+    depth: L2
+    note: A+B 决策（V8.3 修复）：蒸馏清单走 case_application（吸收 ADAPTER 七段）+ gap 联动 Infoseek（§13）
+
+  # ============ ⑥ 质量文化（文化骨架 · ISO 10010 对齐） ============
+  - constraints: {intent: "⑥质量文化", D: ">=4"}
+    form: assessment_report
+    skeleton: culture
+    components: [_meta, _route, _assessment_summary, _score_table, _gaps,
+                 _suggestions, _culture_aware, _culture_behavior,
+                 _culture_system, _culture_climate, _dual_zero]
+    depth: L3
+    note: 意识→行为→制度→氛围 四层评估 + 缺口路线图
+  - constraints: {intent: "⑥质量文化"}
+    form: case_application
+    skeleton: culture
+    components: [_meta, _route, _action_items, _culture_aware,
+                 _culture_behavior, _culture_system, _culture_climate,
+                 _measures, _dual_zero, _followup]
+    depth: L2
+    note: 文化案例应用（四层推进 + 措施）
