@@ -1,0 +1,19 @@
+# QCM 路由阈值配置（V8.4 · §14.4 置信度阈值外置 · 配置驱动路由）
+# 语义：路由置信度计算与回问判定由本文件驱动（router.py 读取 · 缺失时用内置默认值兜底）
+# 校验：0 < clarify < default < direct < 1
+
+thresholds:
+  # 置信度计算（§14.4）
+  high_score_base: 0.8        # best_score ≥ score_high 时：0.8 + 0.05*(score-3)，上限 0.99
+  high_score_step: 0.05
+  high_score_cap: 0.99
+  low_score_base: 0.5         # best_score ≥1：0.5 + 0.1*score
+  low_score_step: 0.1
+  fallback: 0.2               # 未命中兜底置信度
+
+  # 词数门槛（§14.4 命中词数）
+  score_high: 3               # ≥3 词命中 → 高置信直接路由
+  score_low: 1                # ≥1 词命中 → 默认路由
+
+  # 回问判定（§14.4 0 词命中 → <0.3 需回问）
+  clarify: 0.3
