@@ -1,0 +1,26 @@
+# Prometheus 配置（QCM MCP 监控）
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'qcm-mcp'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['qcm-mcp:8080']
+        labels:
+          service: 'qcm-mcp'
+          version: '0.7.0'
+
+  - job_name: 'infoseek-mcp'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['infoseek-mcp:8080']
+        labels:
+          service: 'infoseek-mcp'
+          version: '3.0.0'
+
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
