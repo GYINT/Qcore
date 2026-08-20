@@ -1,0 +1,95 @@
+# QCM 资产六维路由索引（V8.2 · P1-3 顶层宽松索引）
+# 说明：
+#   - 工具六维标签：已注入 tools.md（87 工具 · 领域主/次 + 组规则推导），此处不重复
+#   - 本文件：案例/场景显式索引 + 检索规则（三层命中合并）
+#   - 领域值域：A制造/B设计/C供应链/D现场/E体系/F战略/R风险/Q客户/通用
+#   - 意图值域：①危机处置/②流程优化/③评估审计/④知识学习/⑤知识沉淀
+
+# ============ 案例索引（§9 资产化） ============
+cases:
+  - id: CASE-001
+    title: 通信科技龙头·以客户为中心的大质量体系
+    domain: {primary: F战略, secondary: [Q客户]}
+    intent: [③评估审计, ④知识学习]
+    industry: [全行业]
+    scenario: [质量体系, 文化]
+    meta: {status: active, confidence: 0.9}
+
+  - id: CASE-002
+    title: 汽车集团·并购北欧豪华品牌质量跃升
+    domain: {primary: E体系, secondary: [F战略]}
+    intent: [③评估审计]
+    industry: [汽车]
+    scenario: [体系整合]
+    meta: {status: active, confidence: 0.9}
+
+  - id: CASE-003
+    title: 航空宇航·双归零方法论
+    domain: {primary: A制造, secondary: [R风险, E体系]}
+    intent: [①危机处置, ④知识学习]
+    industry: [航空]
+    scenario: [双归零, 客诉]
+    meta: {status: active, confidence: 0.95}
+
+  - id: CASE-004
+    title: quality-in 工具地图
+    domain: {primary: 通用, secondary: []}
+    intent: [④知识学习]
+    industry: [全行业]
+    scenario: [工具编排]
+    meta: {status: active, confidence: 0.8}
+
+  - id: CASE-005
+    title: 精密制造龙头·全工艺链质量治理
+    domain: {primary: A制造, secondary: [D现场, B设计]}
+    intent: [①危机处置, ③评估审计]
+    industry: [消费电子, 精密制造]
+    scenario: [全工艺链, NPI]
+    meta: {status: active, confidence: 0.85}
+
+  - id: CASE-006
+    title: 精密制造龙头·消费电子+新能源双轮质量闭环
+    domain: {primary: A制造, secondary: [C供应链, Q客户]}
+    intent: [①危机处置, ②流程优化]
+    industry: [消费电子, 新能源]
+    scenario: [质量闭环, 供应链]
+    meta: {status: active, confidence: 0.85}
+
+  - id: CASE-007
+    title: 射频器件龙头·AI 质检与垂直整合
+    domain: {primary: A制造, secondary: [B设计]}
+    intent: [②流程优化, ①危机处置]
+    industry: [射频, 车规]
+    scenario: [AI质检, NPI]
+    meta: {status: active, confidence: 0.85}
+
+# ============ 场景索引（车间 + 设计/规划） ============
+scenarios:
+  - id: SCENE-01 ~ SCENE-08
+    title: workshop-battlefield.md §1-§8（8 车间工艺模式）
+    domain: [A制造, D现场]
+    intent: [①危机处置, ②流程优化]
+    note: 冲压/CNC/注塑/表面处理/组装SMT/模具/来料IQC/出货客诉
+
+  - id: SCENE-09
+    title: design-planning-scenarios.md §1 产品开发车间（NPI）
+    domain: [B设计, R风险]
+    intent: [②流程优化, ①危机处置]
+    industry: [全行业]
+    note: APQP/FMEA/质量门/PPAP
+
+  - id: SCENE-10
+    title: design-planning-scenarios.md §2 产品规划场景
+    domain: [F战略, Q客户]
+    intent: [③评估审计]
+    industry: [全行业]
+    note: VOC/KANO/方针管理/X-Matrix
+
+# ============ 检索规则（三层命中合并） ============
+rules:
+  layer1_exact: "领域+行业+场景 全匹配 → 优先返回（案例/场景显式命中）"
+  layer2_default: "领域匹配 + 行业缺省全行业 → 次优先（通用工具/案例）"
+  layer3_fuzzy: "次领域命中 / 意图匹配 → 兜底"
+  sort: "精确 > 缺省 > 模糊 · 去重"
+  intent_route: "P2-1 场景路由：意图5 × 领域8 矩阵（见 action-orders 附录）"
+  gap_check: "路由后无资产覆盖 → §13 缺口检测 → Infoseek 调研 → [置信度] 标注"
