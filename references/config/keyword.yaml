@@ -1,0 +1,1286 @@
+version: 1.0
+keywords:
+- word: 失效
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - failure
+  - 失效分析
+  - 失效模式
+- word: 缺陷
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - defect
+  - 瑕疵
+- word: 客诉
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - customer complaint
+  - 客户投诉
+- word: 超差
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - 超出公差
+  - 超规格
+  - 超限
+- word: 异常
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - abnormal
+  - anomaly
+  - 异常波动
+- word: 报废
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - scrap
+  - 报废品
+- word: 召回
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - recall
+  - 产品召回
+- word: 不良率
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - defect rate
+  - 不合格率
+  - 废品率
+- word: 裂纹
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - crack
+  - 裂缝
+- word: 划伤
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - scratch
+  - 刮伤
+- word: 毛刺
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - burr
+  - 披锋
+- word: 变形
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - deformation
+  - 翘曲
+- word: 虚焊
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - cold solder
+  - 假焊
+- word: 漏装
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - missing part
+  - 漏件
+- word: 不合格
+  intent: ①危机处置
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - nonconforming
+  - 不合格品
+- word: 枯萎
+  intent: ①危机处置
+  level: base
+  status: archived
+  created_at: '2026-08-20'
+  aliases: []
+- word: 早衰
+  intent: ①危机处置
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 损耗
+  intent: ①危机处置
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 变质
+  intent: ①危机处置
+  level: base
+  status: archived
+  created_at: '2026-08-20'
+  aliases: []
+- word: 腐烂
+  intent: ①危机处置
+  level: base
+  status: archived
+  created_at: '2026-08-20'
+  aliases: []
+- word: 损坏
+  intent: ①危机处置
+  level: base
+  status: archived
+  created_at: '2026-08-20'
+  aliases: []
+- word: 投诉
+  intent: ①危机处置
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - complain
+  - grievance
+- word: 退款
+  intent: ①危机处置
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 断裂
+  intent: ①危机处置
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - break
+  - fracture
+- word: 故障
+  intent: ①危机处置
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - malfunction
+  - 故障模式
+- word: 中断
+  intent: ①危机处置
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 停摆
+  intent: ①危机处置
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - shutdown
+  - 停机
+  - 停线
+- word: 跌破
+  intent: ①危机处置
+  level: base
+  status: new
+  created_at: '2026-08-20'
+  aliases: []
+- word: 超标
+  intent: ①危机处置
+  level: base
+  status: new
+  created_at: '2026-08-20'
+  aliases: []
+- word: 飙升
+  intent: ①危机处置
+  level: base
+  status: new
+  created_at: '2026-08-20'
+  aliases: []
+- word: 恶化
+  intent: ①危机处置
+  level: base
+  status: new
+  created_at: '2026-08-20'
+  aliases:
+  - deteriorate
+  - 恶化趋势
+- word: 边缘超差
+  intent: ①危机处置
+  level: base
+  status: new
+  created_at: '2026-08-20'
+  aliases: []
+- word: 拒收
+  intent: ①危机处置
+  level: base
+  status: new
+  created_at: '2026-08-20'
+  aliases:
+  - reject
+  - rejection
+  - 客户拒收
+- word: 不合格率
+  intent: ①危机处置
+  level: base
+  status: new
+  created_at: '2026-08-20'
+  aliases: []
+- word: 优化
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - optimize
+  - 优化改善
+- word: 改善
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - kaizen
+  - 改进
+- word: 效率
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - efficiency
+  - 产能效率
+- word: 成本
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - cost
+  - 成本降低
+- word: 周期
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 瓶颈
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 浪费
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - muda
+  - waste
+  - 七大浪费
+- word: kaizen
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - KAIZEN
+- word: 精益
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 提升
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - improve
+  - uplift
+  - 提高
+- word: 提高
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 缩短
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 降低
+  intent: ②流程优化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - reduce
+  - 减少
+- word: 损耗率
+  intent: ②流程优化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 毛利率
+  intent: ②流程优化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 评估
+  intent: ③评估审计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - assessment
+  - 评价
+- word: 审核
+  intent: ③评估审计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - audit
+  - 稽核
+- word: 成熟度
+  intent: ③评估审计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - maturity
+  - 能力成熟度
+- word: 审计
+  intent: ③评估审计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 评分
+  intent: ③评估审计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - score
+  - 打分
+- word: 合规
+  intent: ③评估审计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: raci
+  intent: ③评估审计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - RACI
+- word: vda
+  intent: ③评估审计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - VDA
+- word: 什么是
+  intent: ④知识学习
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 是什么
+  intent: ④知识学习
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 如何用
+  intent: ④知识学习
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 怎么用
+  intent: ④知识学习
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 依据
+  intent: ④知识学习
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 标准
+  intent: ④知识学习
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - standard
+  - 规范
+- word: 工具
+  intent: ④知识学习
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 大师
+  intent: ④知识学习
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 区别
+  intent: ④知识学习
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 教程
+  intent: ④知识学习
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 新行业
+  intent: ⑤知识沉淀
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 新工艺
+  intent: ⑤知识沉淀
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 适配
+  intent: ⑤知识沉淀
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - adaptation
+  - 行业适配
+- word: 接入
+  intent: ⑤知识沉淀
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 蒸馏
+  intent: ⑤知识沉淀
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 扩展
+  intent: ⑤知识沉淀
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 行业化
+  intent: ⑤知识沉淀
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 落地
+  intent: ⑤知识沉淀
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - deploy
+  - 实施
+  - 落地实施
+- word: 沉淀
+  intent: ⑤知识沉淀
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 萃取
+  intent: ⑤知识沉淀
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 方法论
+  intent: ⑤知识沉淀
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 文化
+  intent: ⑥质量文化
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - culture
+  - 质量文化
+- word: 质量文化
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 意识
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - awareness
+  - 质量意识
+- word: 氛围
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - climate
+  - 氛围营造
+- word: 价值观
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - value
+  - values
+- word: 信念
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 变革
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - change
+  - 变革管理
+- word: 双环
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 组织学习
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 习惯
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 行为准则
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 认同
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 凝聚力
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 理念
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 作风
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 风气
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 素养
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 培育
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 塑造
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 内化
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 渗透
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 融入
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 软实力
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 导向
+  intent: ⑥质量文化
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 工艺
+  domain: A制造
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - process
+  - technology
+- word: 工序
+  domain: A制造
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - process step
+- word: 参数
+  domain: A制造
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - parameter
+- word: 切削
+  domain: A制造
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - cutting
+- word: 焊接
+  domain: A制造
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - welding
+  - solder
+- word: 注塑
+  domain: A制造
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - injection molding
+- word: 冲压
+  domain: A制造
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - stamping
+- word: cnc
+  domain: A制造
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - CNC
+- word: 加工
+  domain: A制造
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - machining
+- word: 设计
+  domain: B设计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - design
+- word: 开发
+  domain: B设计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - development
+- word: npi
+  domain: B设计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - NPI
+- word: dfmea
+  domain: B设计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - DFMEA
+- word: apqp
+  domain: B设计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - APQP
+- word: fmea
+  domain: B设计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - dfmea
+  - pfmea
+  - 失效模式分析
+- word: 产品开发
+  domain: B设计
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - product development
+- word: 供应商
+  domain: C供应链
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - supplier
+- word: 来料
+  domain: C供应链
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - incoming material
+- word: sqe
+  domain: C供应链
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - SQE
+- word: 采购
+  domain: C供应链
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - procurement
+  - purchasing
+- word: iqc
+  domain: C供应链
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - IQC
+- word: 供方
+  domain: C供应链
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - provider
+- word: 冷链
+  domain: C供应链
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 仓储
+  domain: C供应链
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - warehousing
+- word: 物流
+  domain: C供应链
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - logistics
+- word: 配送
+  domain: C供应链
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - distribution
+- word: 现场
+  domain: D现场
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - shop floor
+  - gemba
+- word: 车间
+  domain: D现场
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - workshop
+- word: ipqc
+  domain: D现场
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - IPQC
+- word: gk
+  domain: D现场
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - GK
+- word: 巡检
+  domain: D现场
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - patrol inspection
+- word: 一线
+  domain: D现场
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - frontline
+- word: 门店
+  domain: D现场
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - store
+- word: 审核
+  domain: E体系
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - audit
+  - 稽核
+- word: 体系
+  domain: E体系
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - qms
+  - management system
+- word: iso
+  domain: E体系
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - ISO
+- word: vda6
+  domain: E体系
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - VDA6
+- word: 内审
+  domain: E体系
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - internal audit
+- word: 战略
+  domain: F战略
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - strategy
+- word: 方针
+  domain: F战略
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - policy
+- word: 目标
+  domain: F战略
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - objective
+  - goal
+- word: 规划
+  domain: F战略
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - planning
+- word: 风险
+  domain: R风险
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - risk
+- word: 隐患
+  domain: R风险
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - hidden danger
+  - latent hazard
+- word: 客户
+  domain: Q客户
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - customer
+- word: voc
+  domain: Q客户
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - VOC
+- word: 满意度
+  domain: Q客户
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - satisfaction
+  - CSAT
+- word: 客诉
+  domain: Q客户
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - customer complaint
+  - 客户投诉
+- word: nps
+  domain: Q客户
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - NPS
+- word: 店铺
+  domain: Q客户
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - shop
+- word: 花店
+  domain: Q客户
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - flower shop
+- word: 鲜花
+  domain: Q客户
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - flower
+- word: 服务
+  domain: Q客户
+  level: base
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - service
+- word: 良率
+  role: ambiguous
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - 直通率
+  - 合格率
+  - yield
+  - yield rate
+- word: cpk
+  role: ambiguous
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - 过程能力指数
+  - Cpk
+  - process capability index
+- word: spc
+  role: ambiguous
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - 统计过程控制
+  - SPC
+  - statistical process control
+- word: ppm
+  role: ambiguous
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - PPM
+- word: 直通率
+  role: ambiguous
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - FPY
+  - first pass yield
+- word: 提升
+  role: optimize_verb
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - improve
+  - uplift
+  - 提高
+- word: 改善
+  role: optimize_verb
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - kaizen
+  - 改进
+- word: 提高
+  role: optimize_verb
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 优化
+  role: optimize_verb
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - optimize
+  - 优化改善
+- word: 缩短
+  role: optimize_verb
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases: []
+- word: 降低
+  role: optimize_verb
+  level: base
+  status: stable
+  created_at: '2026-07-06'
+  aliases:
+  - reduce
+  - 减少
+- word: 断刀
+  intent: ①危机处置
+  domain: A制造
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - tool breakage
+- word: 缩水
+  intent: ①危机处置
+  domain: A制造
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - shrinkage
+  - 收缩
+- word: 鲜花
+  domain: Q客户
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 门店
+  domain: D现场
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 冷柜
+  intent: ①危机处置
+  domain: D现场
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - freezer
+- word: tgv
+  domain: B设计
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - TGV
+  - through glass via
+- word: 微裂纹
+  intent: ①危机处置
+  domain: R风险
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - micro crack
+  - 细微裂纹
+- word: 让刀
+  intent: ①危机处置
+  domain: A制造
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - tool deflection
+- word: 椭圆
+  intent: ①危机处置
+  domain: A制造
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - ovality
+- word: 瓣数
+  intent: ①危机处置
+  domain: A制造
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases: []
+- word: 孔壁粗糙
+  intent: ①危机处置
+  domain: B设计
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - hole wall roughness
+- word: 冷链断裂
+  intent: ①危机处置
+  domain: C供应链
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - cold chain break
+- word: 超储
+  intent: ①危机处置
+  domain: C供应链
+  level: hot
+  status: active
+  created_at: '2026-08-05'
+  aliases:
+  - overstock
+synonyms:
+  良率:
+  - 良率
+  - 直通率
+  - 合格率
+  fmea:
+  - fmea
+  - dfmea
+  - pfmea
