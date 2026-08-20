@@ -1,0 +1,32 @@
+# QCM 词源字典注册中心（V8.4 B1 · 单一登记表）
+# 用途：登记全部词源字典（schema/消费方/容量/状态）——新增字典必须在此注册，守卫校验合规
+# 维护：新增词源字典时追加条目；字段缺失由守卫 config_sync 校验拦截
+
+dictionaries:
+  # ── 核心词源（路由/意图消费） ──
+  - {id: keyword, path: references/config/keyword.yaml, schema: "word/intent/domain/role/level/status/aliases",
+     consumers: [router, semantic_audit, keyword_lifecycle, metrics, hit_tracker],
+     capacity: {intent_max: 40, domain_max: 20}, status: active, owner: 词源管理}
+  - {id: entities, path: references/config/entities.yaml, schema: "name/type/aliases/domain/intent/source",
+     consumers: [router, extract_entities, resources, metrics], capacity: {max: 100},
+     status: active, owner: 实体层（自动生成）}
+  - {id: synonyms, path: references/config/keyword.yaml#synonyms, schema: "main: [alts]",
+     consumers: [router], capacity: {}, status: active, owner: 词源管理}
+
+  # ── 规则/检测词典 ──
+  - {id: semantic, path: references/config/semantic.yaml, schema: "complementary_pairs/confirmed_pairs/params",
+     consumers: [semantic_audit], capacity: {}, status: active, owner: 词源管理}
+  - {id: disambiguation, path: references/config/disambiguation_cases.yaml, schema: "cases[word][feature/intent/count]",
+     consumers: [ambiguity_resolver, metrics], capacity: {}, status: active, owner: 歧义消解（V8.4 回灌自学习）}
+  - {id: router_thresholds, path: references/config/router.yaml, schema: "thresholds",
+     consumers: [router], capacity: {}, status: active, owner: 路由配置}
+
+  # ── 配置/角色（非词源但属 config 族） ──
+  - {id: role, path: references/config/role.yaml, schema: "roles[id/name/domains/forms]",
+     consumers: [config_sync], capacity: {}, status: active, owner: 配置}
+  - {id: components, path: references/config/components.yaml, schema: "components",
+     consumers: [assembler, component_scan], capacity: {max: 35}, status: active, owner: 组件池}
+  - {id: constraint, path: references/config/constraint.yaml, schema: "mapping/components",
+     consumers: [assembler, component_scan], capacity: {}, status: active, owner: 组件池}
+  - {id: validator, path: references/config/validator.yaml, schema: "checks/forms",
+     consumers: [validator, config_sync], capacity: {}, status: active, owner: 校验配置}
