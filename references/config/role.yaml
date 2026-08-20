@@ -1,0 +1,101 @@
+# QCM 角色配置
+# V1.1.0（2026-08-20 · 归一化）
+# 说明：从 outputs/*.md 模板硬编码提取，供模板渲染与校验规则共用
+# 领域值域与 keyword.yaml 对齐（V8.3.2 T1.1）：A制造/B设计/C供应链/D现场/E体系/F战略/R风险/Q客户
+# 历史错位标签（V1.0.0）已语义映射：D供应链→C供应链 · C设计→B设计 · E工程→B设计 · F服务→Q客户 · R零售→Q客户 · S安全→R风险
+
+roles:
+  - id: SQE
+    name: 供应商质量工程师
+    domains: [A制造, C供应链]
+    forms: [case_application, decision_card]
+    description: 涉及供应商时担任 A（问责）
+    condition: "涉及供应商"
+
+  - id: CQE
+    name: 客户质量工程师
+    domains: [Q客户]
+    forms: [case_application, decision_card]
+    description: 涉及客户时担任 A（问责）
+    condition: "涉及客户"
+
+  - id: QE
+    name: 质量工程师
+    domains: [A制造, B设计, C供应链, D现场, E体系, F战略, R风险, Q客户]
+    forms: [case_application, decision_card, assessment_report, quick_response]
+    description: 默认质量责任人
+    condition: "默认"
+
+  - id: 生产
+    name: 生产部门
+    domains: [A制造, D现场]
+    forms: [case_application, decision_card]
+    description: 生产执行层 R（执行）
+    condition: "生产执行"
+
+  - id: 采购
+    name: 采购部门
+    domains: [C供应链]
+    forms: [case_application, decision_card]
+    description: 供应链协同 C（配合）
+    condition: "供应链协同"
+
+  - id: 销售
+    name: 销售部门
+    domains: [Q客户]
+    forms: [case_application, decision_card]
+    description: 客户沟通 C（配合）
+    condition: "客户沟通"
+
+  - id: 研发
+    name: 研发部门
+    domains: [B设计]
+    forms: [case_application, decision_card, assessment_report]
+    description: 设计/工程根因分析 R（执行）
+    condition: "设计根因"
+
+  - id: 安全
+    name: 安全部门
+    domains: [R风险]
+    forms: [case_application, decision_card, quick_response]
+    description: 安全事件 A（问责）
+    condition: "安全事件"
+
+# 形态 → 角色映射（RACI 结构定义）
+form_role_map:
+  case_application:
+    raci_pattern: "【R:{责任} · C:{配合} · I:{知会}】"
+    accountability_source: "§5 责任层映射"
+    constraints:
+      - "每措施必有 A=问责"
+      - "C/I 各 ≤2"
+      - "涉及供应商→SQE A"
+      - "涉及客户→CQE A"
+
+  decision_card:
+    raci_pattern: "【R:{责任} · C:{配合} · I:{知会}】"
+    accountability_source: "§5 责任层映射"
+    constraints:
+      - "每决策必有 A"
+      - "C/I 各 ≤1"
+
+  assessment_report:
+    raci_pattern: "【R:{责任} · C:{配合} · I:{知会}】"
+    accountability_source: "§5 责任层映射"
+    constraints:
+      - "改进建议必有 A"
+
+  quick_response:
+    raci_pattern: "责任人：{责任}"
+    accountability_source: "§5 责任层映射（简化）"
+    constraints:
+      - "快响必有唯一责任人"
+
+# 决策桥联动：探针组织层 → 角色预选
+probe_role_bridge:
+  组织层_供应商: [SQE, 采购]
+  组织层_客户: [CQE, 销售]
+  组织层_生产: [生产, QE]
+  组织层_研发: [研发, QE]
+  组织层_安全: [安全, QE]
+  组织层_默认: [QE]
