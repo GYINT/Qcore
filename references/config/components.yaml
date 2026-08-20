@@ -1,0 +1,219 @@
+# QCM 输出组件注册表（V8.3 · 组件池单一真源 · 防模板爆炸）
+# 协议：action-orders §14 路由 + 输出层 4 形态 · 组件=协议层章节的"输出形态"
+# 状态：defined=已定义（段落仍在母模板）· extracted=已切分独立文件 · archived=归档
+# 热度：new/active/stable/archived（复用 §11 生命周期 · qcm_component_scan.py 自动统计）
+# 容量约束：组件池 ≤35（超限触发合并评审）
+version: 1.0
+
+components:
+  # ============ 公共组件（跨 3+ 形态复用） ============
+  _meta:
+    category: analysis
+    forms: [case_application, decision_card, assessment_report, quick_response]
+    skeletons: [crisis, improve, assess, knowledge, culture, distill]
+    ref: action-orders 输出层通用
+    mandatory: true
+    status: stable
+  _route:
+    category: analysis
+    forms: [case_application, decision_card, assessment_report]
+    skeletons: [crisis, improve, assess, knowledge, culture, distill]
+    ref: action-orders §14
+    mandatory: false
+    status: new          # V8.3 新增：路由元数据消费（意图/领域/置信度/缺口）
+  _action_items:
+    category: output
+    forms: [case_application, decision_card]
+    skeletons: [crisis, improve, culture]
+    ref: action-orders §1.1
+    mandatory: true
+    status: stable
+  _measures:
+    category: output
+    forms: [case_application, decision_card, assessment_report]
+    skeletons: [crisis, improve, assess, culture]
+    ref: action-orders §1.3
+    mandatory: true
+    status: stable
+  _dual_zero:
+    category: output
+    forms: [case_application, decision_card, assessment_report]
+    skeletons: [crisis, improve, assess, culture]
+    ref: action-orders §3.4
+    mandatory: true
+    status: stable
+  _followup:
+    category: output
+    forms: [case_application, assessment_report, quick_response]
+    skeletons: [crisis, improve, assess, culture]
+    ref: action-orders §5
+    mandatory: true
+    status: stable
+  _probe:
+    category: analysis
+    forms: [case_application]
+    skeletons: [crisis]
+    ref: action-orders §2.1
+    mandatory: false
+    status: stable
+  _decision_row:
+    category: output
+    forms: [decision_card]
+    skeletons: [crisis, improve, culture]
+    ref: action-orders §1+§4
+    mandatory: true
+    status: stable
+
+  # ============ 形态特有组件 ============
+  _assessment_summary:
+    category: analysis
+    forms: [assessment_report]
+    skeletons: [assess, culture]
+    ref: action-orders §7
+    mandatory: true
+    status: stable
+  _score_table:
+    category: analysis
+    forms: [assessment_report]
+    skeletons: [assess, culture]
+    ref: action-orders §7.2
+    mandatory: true
+    status: stable
+  _gaps:
+    category: analysis
+    forms: [assessment_report]
+    skeletons: [assess, culture]
+    ref: action-orders §13
+    mandatory: true
+    status: stable
+  _suggestions:
+    category: output
+    forms: [assessment_report]
+    skeletons: [assess, culture]
+    ref: action-orders §1.3
+    mandatory: true
+    status: stable
+  _crisis_judge:
+    category: output
+    forms: [quick_response]
+    skeletons: [crisis]
+    ref: action-orders §3.1
+    mandatory: true
+    status: stable
+  _crisis_judge_mini:
+    category: output
+    forms: [quick_response]
+    skeletons: [crisis]
+    ref: action-orders §3.1
+    mandatory: false
+    status: stable
+  _knowledge_points:
+    category: output
+    forms: [quick_response]
+    skeletons: [knowledge]
+    ref: action-orders §14
+    mandatory: true
+    status: new          # V8.3：意图④知识学习轻量输出
+  _distill_pack:
+    category: output
+    forms: [case_application]
+    skeletons: [distill]
+    ref: action-orders §14 + industry-adaptation ADAPTER 七段
+    mandatory: true
+    status: active       # V8.3 修复（A+B）：蒸馏清单组件（吸收 ADAPTER 七段）
+
+  # ============ 意图骨架差异组件 ============
+  _state_nav:       # 危机骨架：事态导航
+    category: analysis
+    forms: [case_application]
+    skeletons: [crisis]
+    ref: action-orders §2.1
+    mandatory: true
+    status: stable
+  _crisis_comm:     # 危机骨架：3T 沟通
+    category: output
+    forms: [case_application]
+    skeletons: [crisis]
+    ref: action-orders §2.2
+    mandatory: true
+    status: stable
+  _pdca_current:    # 改进骨架：现状
+    category: analysis
+    forms: [case_application]
+    skeletons: [improve]
+    ref: PDCA
+    mandatory: true
+    status: new
+  _pdca_target:     # 改进骨架：目标
+    category: output
+    forms: [case_application]
+    skeletons: [improve]
+    ref: PDCA
+    mandatory: true
+    status: new
+  _pdca_counter:    # 改进骨架：对策
+    category: output
+    forms: [case_application]
+    skeletons: [improve]
+    ref: PDCA
+    mandatory: true
+    status: new
+  _pdca_verify:     # 改进骨架：验证+固化
+    category: output
+    forms: [case_application]
+    skeletons: [improve]
+    ref: PDCA
+    mandatory: true
+    status: new
+  _knowledge_def:   # 知识骨架：定义
+    category: analysis
+    forms: [quick_response]
+    skeletons: [knowledge]
+    ref: 知识管理
+    mandatory: true
+    status: new
+  _knowledge_points:  # 知识骨架：要点
+    category: output
+    forms: [quick_response]
+    skeletons: [knowledge]
+    ref: 知识管理
+    mandatory: true
+    status: new
+  _knowledge_basis:   # 知识骨架：依据/工具引用
+    category: analysis
+    forms: [quick_response]
+    skeletons: [knowledge]
+    ref: 知识管理
+    mandatory: true
+    status: new
+  _culture_aware:   # 文化骨架：意识层
+    category: analysis
+    forms: [assessment_report, case_application]
+    skeletons: [culture]
+    ref: ISO 10010:2022
+    mandatory: true
+    status: new
+  _culture_behavior:  # 文化骨架：行为层
+    category: output
+    forms: [assessment_report, case_application]
+    skeletons: [culture]
+    ref: ISO 10010:2022
+    mandatory: true
+    status: new
+  _culture_system:    # 文化骨架：制度层
+    category: analysis
+    forms: [assessment_report, case_application]
+    skeletons: [culture]
+    ref: ISO 10010:2022
+    mandatory: true
+    status: new
+  _culture_climate:   # 文化骨架：氛围层
+    category: output
+    forms: [assessment_report, case_application]
+    skeletons: [culture]
+    ref: ISO 10010:2022
+    mandatory: true
+    status: new
+
+# 组件池容量：27 组件（≤35 容量约束 ✅）
+# 热度预期：_meta/_measures/_dual_zero/_followup 跨 3+ 形态 → stable 候选
