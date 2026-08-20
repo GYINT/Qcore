@@ -1,0 +1,7 @@
+cases:
+  spc:
+  - feature: spc 控制图 h
+    intent: ④知识学习
+    confidence: 0.9
+    count: 1
+    last_ts: 2026-08-20 18:57
