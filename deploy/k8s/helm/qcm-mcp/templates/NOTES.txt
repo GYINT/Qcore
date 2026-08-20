@@ -1,0 +1,13 @@
+QCM MCP Server has been deployed!
+
+Access the service:
+  export POD_NAME=$(kubectl get pods -l "app.kubernetes.io/name={{ include "qcm-mcp.name" . }}" -o jsonpath="{.items[0].metadata.name}")
+  kubectl port-forward $POD_NAME 8080:8080
+
+Then test:
+  curl http://localhost:8080/health/live
+  curl http://localhost:8080/metrics
+
+Get OAuth token:
+  curl -X POST http://localhost:8080/oauth/token \
+    -d "grant_type=client_credentials&client_id=default-client&client_secret=$QCM_AUTH_TOKEN&scope=tools/call"
